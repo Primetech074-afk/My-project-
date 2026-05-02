@@ -1,0 +1,135 @@
+
+  <!DOCTYPE html>
+<html>
+<head>
+  <title>Nova AI System</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial;
+      background: linear-gradient(120deg, #000, #111, #001a33);
+      color: white;
+    }
+
+    .center {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .box {
+      background: rgba(0,0,0,0.7);
+      padding: 25px;
+      border-radius: 12px;
+      width: 300px;
+      text-align: center;
+      box-shadow: 0 0 20px cyan;
+    }
+
+    input {
+      width: 90%;
+      padding: 10px;
+      margin: 8px 0;
+      border: none;
+      border-radius: 6px;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      border: none;
+      border-radius: 6px;
+      background: cyan;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #00ffffaa;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    /* Dashboard */
+    .dashboard {
+      padding: 20px;
+    }
+
+    .card {
+      background: rgba(255,255,255,0.05);
+      padding: 15px;
+      border-radius: 10px;
+      margin-top: 10px;
+      box-shadow: 0 0 10px #00ffff55;
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- LOGIN PAGE -->
+<div id="loginPage" class="center">
+  <div class="box">
+    <h2>Nova AI Login</h2>
+
+    <input type="text" id="user" placeholder="Username">
+    <input type="password" id="pass" placeholder="Password">
+
+    <button onclick="login()">Login</button>
+  </div>
+</div>
+
+<!-- DASHBOARD -->
+<div id="dashboard" class="hidden">
+  <div class="dashboard">
+    <h1>🔥 Welcome to Nova AI</h1>
+    <p id="welcomeText"></p>
+
+    <div class="card">
+      <h3>System Status</h3>
+      <p>Nova AI is running...</p>
+    </div>
+
+    <div class="card">
+      <h3>Quick Actions</h3>
+      <p>✔ Run AI</p>
+      <p>✔ Check Data</p>
+      <p>✔ Build Project</p>
+    </div>
+
+    <button onclick="logout()">Logout</button>
+  </div>
+</div>
+
+<script>
+function login() {
+  let user = document.getElementById("user").value;
+  let pass = document.getElementById("pass").value;
+
+  if(user && pass) {
+    localStorage.setItem("novaUser", user);
+
+    document.getElementById("loginPage").classList.add("hidden");
+    document.getElementById("dashboard").classList.remove("hidden");
+
+    document.getElementById("welcomeText").innerText = "Hello, " + user + " 👋";
+  } else {
+    alert("Enter username and password");
+  }
+}
+
+function logout() {
+  localStorage.removeItem("novaUser");
+
+  document.getElementById("loginPage").classList.remove("hidden");
+  document.getElementById("dashboard").classList.add("hidden");
+}
+</script>
+
+</body>
+</html>
